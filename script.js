@@ -37,17 +37,17 @@ function resetImg() {
 }
 
 
-$(document).ready(function() {
-    $("#img1i").hide(); // Ukryj obrazek przy załadowaniu strony
+// $(document).ready(function() {
+//     $("#img1i").hide(); // Ukryj obrazek przy załadowaniu strony
 
-    $("#img1b").click(function() {
-        $("#img1i").fadeIn(); // Płynne pojawienie się obrazka po kliknięciu
-    });
+//     $("#img1b").click(function() {
+//         $("#img1i").fadeIn(); // Płynne pojawienie się obrazka po kliknięciu
+//     });
 
-    $("#img1i").click(function() {
-        $("#img1i").fadeOut(); // Płynne znikanie obrazka po ponownym kliknięciu
-    });
-});
+//     $("#img1i").click(function() {
+//         $("#img1i").fadeOut(); // Płynne znikanie obrazka po ponownym kliknięciu
+//     });
+// });
 
 
 $(document).ready(function() {
@@ -91,13 +91,42 @@ function updateClock() {
 }
 
 $(document).ready(function() {                                  // uruchamia kod wewnątrz, gdy dokument HTML jest w pełni załadowany i przetworzony przez przeglądarkę
-    updateClock(); // Rozpocznij aktualizację zegara po załadowaniu strony
+    updateClock(); // rozpocznij aktualizację zegara po załadowaniu strony
     
-    // Dodaj obsługę kliknięcia dla pozycji menu
+    // obsługę kliknięcia dla pozycji menu
     $(".dropdown-content a").click(function(event) {
         event.preventDefault();
         showMenuNotification($(this).text());
     });
+    
+    // powiększanie zdjęcia po najechaniu
+    $(".dish > img").hover(
+        function() {
+            // po najechaniu - powiększ zdjęcie
+            $(this).css({
+                'transform': 'scale(1.1)',
+                'z-index': '10',
+                'position': 'relative'
+            });
+            
+            // Pokaż opis
+            var description = $(this).siblings('.title').find('.info p').text();
+            if (description) {
+                // Utwórz i pokaż opis
+                $('<div class="image-description">' + description + '</div>').insertAfter(this);
+            }
+        },
+        function() {
+            // po zjechaniu - przywróć normalny rozmiar
+            $(this).css({
+                'transform': 'scale(1)',
+                'z-index': '1'
+            });
+            
+            // ukryj opis
+            $(this).siblings('.image-description').remove();
+        }
+    );
 });
 
 
