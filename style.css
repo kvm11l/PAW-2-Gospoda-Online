@@ -218,9 +218,6 @@ footer {
     height: 250px;
 }
 
-/* poprawic to paddingami  */
-
-
 #slideshow {
     position: relative;
     width: 100%;
@@ -237,4 +234,33 @@ footer {
 
 #slideshow img.active {
     opacity: 1;             /* ustawienie widocznosci obrazka*/
+}
+
+/* styl dla powiększonych zdjęć po najechaniu */
+.dish > img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    border-radius: 5px;
+}
+
+/* opis zdjęcia */
+.image-description {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    text-align: center;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 8px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+/* odpowiednie pozycjonowanie */
+.dish {
+    position: relative;
+    overflow: visible;
 }
